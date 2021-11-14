@@ -17,7 +17,13 @@ namespace MVC__BO.Controllers
         {
             _logger = logger;
         }
-        
+
+        private IAlunoBLL alunoBLL;
+        public HomeController(IAlunoBLL _alunoBLL)
+        {
+            alunoBLL = _alunoBLL;
+        }
+
         //Get
         public IActionResult Index()
         {
@@ -63,6 +69,13 @@ namespace MVC__BO.Controllers
                 return RedirectToAction("Index");
             }
 
+        }
+
+        //Get
+        public IActionResult Delete(int id)
+        {
+            alunoBLL.DeletarAluno(id);
+            return RedirectToAction("Index");
         }
 
         public IActionResult Privacy()
